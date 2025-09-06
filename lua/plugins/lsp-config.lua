@@ -2,7 +2,12 @@ return {
   {
     "williamboman/mason.nvim",
     config = function()
-      require("mason").setup()
+      require("mason").setup({
+        registries = {
+          "github:Crashdummyy/mason-registry",
+          "github:mason-org/mason-registry",
+        },
+      })
     end,
   },
   {
@@ -10,6 +15,7 @@ return {
     config = function()
       require("mason-lspconfig").setup({
         ensure_installed = {
+          "roslyn",
           "lua_ls",
           "ts_ls",
           "tailwindcss",
@@ -18,13 +24,20 @@ return {
     end,
   },
   {
+    "seblyng/roslyn.nvim",
+    opts = {
+      filewatching = "auto",
+      silent = false,
+    },
+  },
+  {
     "jay-babu/mason-nvim-dap.nvim",
     config = function()
       require("mason-nvim-dap").setup({
         ensure_installed = {
           "java-debug-adapter",
           "java-test",
-          "codelldb"
+          "codelldb",
         },
       })
     end,
@@ -81,11 +94,10 @@ return {
         "svelte",
         "dockerls",
         "docker_compose_language_service",
-        "csharp_ls",
         "clangd",
-        "yaml-languaje-server",
+        "yamlls",
         "jsonls",
-        "bashls"
+        "bashls",
       }
 
       for _, server in ipairs(servers) do
@@ -125,9 +137,7 @@ return {
         severity_sort = true,
       })
 
-
       local orig_handler = vim.lsp.handlers["window/showMessage"]
-
       vim.lsp.handlers["window/showMessage"] = function(_, result, ctx, config)
         if result and result.message and result.message:match("failed to decode json") then
           return

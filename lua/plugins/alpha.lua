@@ -1,19 +1,5 @@
 return {
-  lspconfig.csharp_ls.setup({
-    capabilities = capabilities,
-    init_options = { AutomaticWorkspaceInit = true },
-    root_dir = function(fname)
-      return util.root_pattern("*.sln", "*.csproj")(fname)
-          or util.find_git_ancestor(fname)
-    end,
-    on_attach = function(client, bufnr)
-      client.server_capabilities.documentFormattingProvider = true
-      vim.keymap.set("n", "<leader>cf", function()
-        vim.lsp.buf.format({ async = true })
-      end, { buffer = bufnr, desc = "C# Format" })
-    end,
-  })
-      'goolord/alpha-nvim',
+  'goolord/alpha-nvim',
   config = function()
     local alpha = require('alpha')
     local dashboard = require('alpha.themes.dashboard')
