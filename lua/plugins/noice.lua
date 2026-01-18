@@ -3,7 +3,7 @@ return {
   event = "VeryLazy",
   opts = {
     lsp = {
-      progress = { enabled = false },
+      progress = { enabled = true },
     },
   },
   dependencies = {

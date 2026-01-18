@@ -1,4 +1,7 @@
 ---@diagnostic disable: undefined-global
+vim.loader.enable()
+vim.g.python3_host_prog = os.getenv("HOME") .. "/venvs/magma/bin/python"
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
@@ -10,9 +13,10 @@ if not vim.loop.fs_stat(lazypath) then
     lazypath,
   })
 end
-
 vim.opt.rtp:prepend(lazypath)
-vim.g.python3_host_prog = os.getenv("HOME") .. "/venvs/magma/bin/python"
 
 require("vim-settings")
-require("lazy").setup("plugins")
+require("lazy").setup("plugins", {
+  ui = { border = "rounded" },
+  change_detection = { notify = false },
+})

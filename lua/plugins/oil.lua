@@ -1,21 +1,16 @@
 return {
-  "lukas-reineke/indent-blankline.nvim",
-  main = "ibl",
-  opts = {},
-  config = function()
-    local highlight = {
-      "CursorColumn",
-      "Whitespace",
-    }
-    require("ibl").setup({
-      indent = {
-        highlight = highlight,
-      },
-      whitespace = {
-        highlight = highlight,
-        remove_blankline_trail = false,
-      },
-      scope = { enabled = false },
-    })
-  end,
+	{
+		"stevearc/oil.nvim",
+		opts = {},
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		keys = {
+			{
+				"<C-m>",
+				function()
+					require("oil").open()
+				end,
+				desc = "Abrir explorador de archivos Oil",
+			},
+		},
+	},
 }

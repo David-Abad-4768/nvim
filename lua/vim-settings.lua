@@ -45,8 +45,8 @@ vim.diagnostic.config({
     prefix = "●", -- could be "", too
     severity = { min = vim.diagnostic.severity.INFO },
   },
-  signs = true,             -- show gutter signs
-  underline = true,         -- underline errors
+  signs = true,            -- show gutter signs
+  underline = true,        -- underline errors
   update_in_insert = false, -- don't update while you're typing
-  severity_sort = true,     -- sort diagnostics by severity
+  severity_sort = true,    -- sort diagnostics by severity
 })
